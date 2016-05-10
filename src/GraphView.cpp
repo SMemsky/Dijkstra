@@ -29,7 +29,15 @@ void GraphView::updateNotify()
 
 void GraphView::init()
 {
-	m_window.create(sf::VideoMode(800, 600), "Dijkstra");
+	sf::ContextSettings settings;
+	settings.depthBits = 0;
+	settings.stencilBits = 0;
+	settings.antialiasingLevel = 0;
+	settings.majorVersion = 2;
+	settings.minorVersion = 1;
+
+	m_window.create(sf::VideoMode(800, 600, 32), "Dijkstra",
+		sf::Style::Titlebar | sf::Style::Close, settings);
 	m_window.setFramerateLimit(60);
 
 	if (!m_font.loadFromFile("sansation.ttf"))

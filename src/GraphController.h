@@ -7,6 +7,7 @@
 class GraphView;
 class GraphNode;
 class GraphModel;
+class GraphEdge;
 
 class GraphController : public Controller
 {
@@ -25,6 +26,7 @@ private:
 	void handleRightClick(int x, int y);
 
 	GraphNode* findNodeAt(unsigned x, unsigned y) const;
+	GraphEdge* findEdge(GraphNode* source, GraphNode* destination) const;
 	float distance(unsigned ax, unsigned ay, unsigned bx, unsigned by) const;
 private:
 	sf::Clock* m_deltaClock;

@@ -83,6 +83,27 @@ GraphNode* GraphController::findNodeAt(unsigned x, unsigned y) const
 	return nullptr;
 }
 
+GraphEdge* GraphController::findEdge(GraphNode* source, GraphNode* destination)
+	const
+{
+	auto& edges = source->getEdgeSet();
+	auto end = edges.end();
+	for (auto it = edges.begin(); it != end; ++it)
+	{
+		if ((*it)->getDestination() == destination)
+		{
+			return (*it);
+		}
+		else if ((*it)->getSource() == destination &&
+			(*it)->isTwoWay())
+		{
+			return (*it);
+		}
+	}
+
+	return nullptr;
+}
+
 void GraphController::handleLeftClick(int x, int y)
 {
 	if (x < 0 ||
@@ -169,19 +190,22 @@ void GraphController::handleLeftRelease(int x, int y)
 
 		auto& sourceData = source->getDataRef();
 		auto& destinationData = destination->getDataRef();
-/*
+
 		GraphEdge* edge = findEdge(source, destination);
 		if (edge == nullptr)
 		{
-			edge = findEdge(destination, source);
+			//edge = findEdge(destination, source);
 		}
-*/
-		GraphEdge* edge = nullptr;
+
 		if (edge == nullptr)
 		{
 			m_model->addEdge(source, destination,
 			static_cast<unsigned>(distance(sourceData.pos.x, sourceData.pos.y,
 				destinationData.pos.x, destinationData.pos.y)));
+		}
+		else
+		{
+			m_model->removeEdge(source, destination);
 		}
 	}
 
