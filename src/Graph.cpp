@@ -277,16 +277,28 @@ void Graph::computePaths() const
 		auto edgesEnd = current->m_edges.end();
 		for (auto it = current->m_edges.begin(); it != edgesEnd; ++it)
 		{
-			if ((*it)->m_destination->m_visited)
+			GraphNode* destination = nullptr;
+			if ((*it)->m_source == current)
+			{
+				destination = (*it)->m_destination;
+			}
+			else if ((*it)->m_destination == current &&
+				(*it)->m_twoWay == true)
+			{
+				destination = (*it)->m_source;
+			}
+
+			if (destination == nullptr ||
+				destination->m_visited)
 			{
 				continue;
 			}
 
 			unsigned sum = current->m_tentativeDistance + (*it)->m_weight;
-			if ((*it)->m_destination->m_tentativeDistance > sum)
+			if (destination->m_tentativeDistance > sum)
 			{
-				(*it)->m_destination->m_tentativeDistance = sum;
-				(*it)->m_destination->m_previousNode = current;
+				destination->m_tentativeDistance = sum;
+				destination->m_previousNode = current;
 			}
 		}
 
