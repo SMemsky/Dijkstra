@@ -1,6 +1,10 @@
 # Dijkstra
 Visualisation of Dijkstra's algorithm usage for finding shortest path in graph
 
+# Status
+
+Project is currently abandoned. Everything is licensed under WTFPL (see LICENSE)
+
 ## Compilation
 
 ### Compiling on windows
@@ -18,7 +22,7 @@ If you have GCC 5 installed, then just `./build.sh`
 
 ## Usage
 
-Just run `./test.sh` in your terminal or execute ./bin/dijkstra
+Just run `./test.sh` in your terminal or execute `./bin/dijkstra`
 
 ### Controls
 
