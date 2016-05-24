@@ -3,7 +3,7 @@ Visualisation of Dijkstra's algorithm usage for finding shortest path in graph
 
 # Status
 
-Project is currently abandoned. Everything is licensed under WTFPL (see LICENSE)
+Project is currently abandoned. Everything in src is licensed under WTFPL (see LICENSE)
 
 ## Compilation
 
